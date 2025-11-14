@@ -1,0 +1,622 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: #f5f9f9;
+  color: #333;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+nav a {
+  color: #ccc;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+nav a:hover, .active {
+  color: #00bfa6;
+}
+
+.recipes-section {
+  padding: 80px 100px;
+  text-align: center;
+}
+
+.recipes-section h1 {
+  color: #00bfa6;
+  margin-bottom: 20px;
+  font-size: 2.6rem;
+}
+
+#searchInput {
+  padding: 12px 20px;
+  border-radius: 30px;
+  width: 50%;
+  border: none;
+  outline: none;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 0 10px rgba(0, 191, 166, 0.3);
+  margin-bottom: 50px;
+}
+
+.recipe-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+}
+
+.recipe-card {
+  width: 280px;
+  border-radius: 18px;
+  overflow: hidden;
+  cursor: pointer;
+  background: rgba(22, 34, 42, 0.9);
+  box-shadow: 0 0 15px rgba(0, 191, 166, 0.2);
+  transition: all 0.4s ease;
+}
+
+.recipe-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(0, 191, 166, 0.6);
+}
+
+.recipe-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  filter: brightness(0.9);
+}
+
+.recipe-card h3 {
+  padding: 15px;
+  color: #00bfa6;
+  font-size: 1.2rem;
+}
+
+/* Glass Blur Popup */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 32, 39, 0.85);
+  backdrop-filter: blur(10px);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: rgba(22, 34, 42, 0.6);
+  border-radius: 20px;
+  padding: 30px 40px;
+  width: 400px;
+  max-height: 80vh;
+  overflow-y: auto;
+  border: 1px solid rgba(0, 191, 166, 0.3);
+  box-shadow: 0 0 30px rgba(0, 191, 166, 0.4);
+  color: #fff;
+  text-align: left;
+  animation: fadeIn 0.3s ease;
+}
+
+.close {
+  float: right;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: #00bfa6;
+}
+
+.modal-content h2 {
+  margin-top: 0;
+  color: #00bfa6;
+}
+
+.modal-content h4 {
+  color: #ccc;
+  margin-bottom: 5px;
+}
+
+footer {
+  text-align: center;
+  padding: 30px;
+  font-size: 0.9rem;
+  color: #ccc;
+  background: rgba(22, 34, 42, 0.8);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Header buttons */
+.auth-buttons {
+  display: flex;
+  align-items: center;
+}
+
+.auth-buttons button {
+  margin-left: 10px;
+  padding: 8px 16px;
+  border-radius: 5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+  text-align: center;
+}
+
+.modal-content input {
+  width: 90%;
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.modal-btn {
+  background: teal;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.close {
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* 🔥 Match Home Page Navbar Style */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.6); /* transparent black */
+  backdrop-filter: blur(10px); /* blur effect */
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 50px;
+  box-sizing: border-box;
+  z-index: 1000;
+}
+
+/* Logo (same as home page) */
+.logo {
+  font-family: 'Pacifico', cursive; /* fancy font for logo */
+  font-size: 2rem; /* slightly bigger if needed */
+  color: teal;
+  font-weight: normal; /* some fancy fonts look better without bold */
+}
+
+/* Navbar links */
+.nav-links {
+  display: flex;
+  gap: 25px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #00bfa6;
+}
+
+/* Sign In / Sign Up buttons */
+.auth-buttons button {
+  margin-left: 10px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.auth-buttons button:hover {
+  opacity: 0.9;
+}
+
+.auth-buttons .signup {
+  background-color: teal;
+  color: #fff;
+}
+
+.auth-buttons button:not(.signup) {
+  background: transparent;
+  border: 1px solid teal;
+  color: teal;
+}
+
+
+/* Body adjustment */
+body {
+  margin: 0;
+  padding-top: 80px; /* same navbar height */
+  font-family: "Poppins", sans-serif;
+  background-color: #0a192f; /* optional dark bg like recipe cards */
+  color: white;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: #ffeaa7;
+}
+
+/* Search Section */
+.search-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px auto;
+  gap: 15px;
+}
+
+#searchInput {
+  width: 40%;
+  padding: 10px 15px;
+  border: 2px solid teal;
+  border-radius: 25px;
+  outline: none;
+}
+
+#addRecipeBtn {
+  background-color: teal;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+#addRecipeBtn:hover {
+  background-color: #007c7a;
+}
+
+/* Recipes Container */
+.recipes-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  padding: 0 40px 40px;
+}
+
+.recipe-card {
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: 0.3s;
+}
+
+.recipe-card:hover {
+  transform: translateY(-5px);
+}
+
+.recipe-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.recipe-info {
+  padding: 15px;
+}
+
+.recipe-info h3 {
+  color: teal;
+  margin-bottom: 10px;
+}
+
+.recipe-actions {
+  display: flex;
+  justify-content: space-around;
+  border-top: 1px solid #eee;
+  padding: 10px 0;
+}
+
+.recipe-actions button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: teal;
+  font-size: 15px;
+  transition: 0.3s;
+}
+
+.recipe-actions button:hover {
+  color: #007c7a;
+}
+
+
+/* Modal Styling (Updated) */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 25, 47, 0.85);
+  backdrop-filter: blur(10px);
+  justify-content: center;
+  align-items: flex-start; /* Start from top */
+  overflow-y: auto;
+  padding: 50px 0; /* spacing from top/bottom */
+}
+
+.modal-content {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  color: white;
+  border-radius: 20px;
+  padding: 30px 35px;
+  width: 90%;
+  max-width: 600px;
+  border: 1px solid rgba(0, 191, 166, 0.3);
+  box-shadow: 0 0 25px rgba(0, 191, 166, 0.5);
+  position: relative;
+  animation: fadeIn 0.4s ease;
+}
+
+.modal-content img {
+  width: 100%;
+  border-radius: 15px;
+  margin-bottom: 20px;
+}
+
+.modal-content h2 {
+  color: #00bfa6;
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+
+.modal-content h4 {
+  color: #ffeaa7;
+  margin-top: 15px;
+  margin-bottom: 8px;
+}
+
+.modal-content ul {
+  list-style: disc;
+  margin-left: 20px;
+  margin-bottom: 10px;
+}
+
+.modal-content p {
+  color: #ddd;
+  line-height: 1.5;
+}
+
+.modal-content .recipe-actions {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 25px;
+}
+
+.modal-content .recipe-actions button {
+  background: none;
+  border: 1px solid #00bfa6;
+  color: #00bfa6;
+  border-radius: 25px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.modal-content .recipe-actions button:hover {
+  background: #00bfa6;
+  color: white;
+}
+
+.close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 26px;
+  cursor: pointer;
+  color: #00bfa6;
+}
+/* ❤ Like button */
+.like-btn {
+  font-size: 18px;
+  background: none;
+  border: none;
+  color: #aaa;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.like-btn.liked {
+  color: red;
+  transform: scale(1.2);
+}
+
+/* 💾 Save button */
+.save-btn {
+  font-size: 15px;
+  background: none;
+  border: none;
+  color: #aaa;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.save-btn.saved {
+  color: teal;
+  font-weight: 600;
+}
+
+/* 💬 Comment box */
+.comment-box {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.comment-box textarea {
+  width: 100%;
+  min-height: 60px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 8px;
+  resize: none;
+  font-family: inherit;
+}
+
+.comment-box .submit-comment {
+  align-self: flex-end;
+  background: teal;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.comment-box .submit-comment:hover {
+  background: #007c7a;
+}
+
+/* 💬 Displayed user comments */
+.user-comment {
+  background: rgba(0, 128, 128, 0.1);
+  border-left: 3px solid teal;
+  padding: 6px 10px;
+  border-radius: 6px;
+  margin: 6px 0;
+  font-size: 0.9rem;
+}
+
+/* ❤ Like Button */
+.like-btn {
+  font-size: 18px;
+  background: none;
+  border: none;
+  color: #888;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.like-btn.liked {
+  color: red !important;
+  transform: scale(1.2);
+}
+
+/* 💾 Save Button */
+.save-btn {
+  font-size: 15px;
+  background: none;
+  border: none;
+  color: #888;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.save-btn.saved {
+  color: teal;
+  font-weight: 600;
+}
+
+/* 💬 Comment Box */
+.comment-box {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.comment-box textarea {
+  width: 100%;
+  min-height: 60px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 8px;
+  resize: none;
+  font-family: inherit;
+}
+
+.comment-box .submit-comment {
+  align-self: flex-end;
+  background: teal;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.comment-box .submit-comment:hover {
+  background: #007c7a;
+}
+
+/* 💬 User Comments */
+.user-comment {
+  background: rgba(0, 128, 128, 0.1);
+  border-left: 3px solid teal;
+  padding: 6px 10px;
+  border-radius: 6px;
+  margin: 6px 0;
+  font-size: 0.9rem;
+}

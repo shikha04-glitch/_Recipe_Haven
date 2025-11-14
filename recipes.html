@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recipes | Recipe Haven</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="recipes.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">recipe haven</div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+    </nav>
+
+    <div class="auth-buttons">
+      <button id="signinBtn">Sign In</button>
+      <button class="signupBtn">Sign Up</button>
+    </div>
+  </header>
+
+  <section class="recipes-section">
+    <h1>Our Signature Recipes</h1>
+    <p class="subtitle">Explore our best dishes — curated with love and flavor.</p>
+
+    <!-- 🔍 Search Bar -->
+    <input type="text" id="searchInput" placeholder="Search for a recipe...">
+
+    <div class="recipe-grid" id="recipeGrid">
+      <div class="recipe-card">
+        <img src="images/pasta.jpeg" alt="Pasta">
+        <h3>Garlic Creamy Pasta</h3>
+        <p>Rich, silky pasta tossed in garlic butter and herbs — a classic indulgence.</p>
+        <button class="view-btn">View Recipe</button>
+      </div>
+
+      <div class="recipe-card">
+        <img src="images/pancake.jpeg" alt="Pancakes">
+        <h3>Fluffy Pancakes</h3>
+        <p>Light, airy pancakes drizzled with honey and berries for a perfect morning.</p>
+        <button class="view-btn">View Recipe</button>
+      </div>
+
+      <div class="recipe-card">
+        <img src="images/tikka.jpg" alt="Paneer Tikka">
+        <h3>Paneer Tikka</h3>
+        <p>Smoky and spicy paneer cubes grilled to perfection.</p>
+        <button class="view-btn">View Recipe</button>
+      </div>
+
+      <div class="recipe-card">
+        <img src="images/brownie.jpg" alt="Brownie">
+        <h3>Chocolate Brownies</h3>
+        <p>Soft, gooey, and rich — made with love for your sweet cravings.</p>
+        <button class="view-btn">View Recipe</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sign In Popup -->
+  <div class="modal" id="signinModal">
+    <div class="modal-content">
+      <span class="close" id="closeSignin">&times;</span>
+      <h2>Sign In</h2>
+      <input type="email" placeholder="Email">
+      <input type="password" placeholder="Password">
+      <button class="modal-btn">Login</button>
+    </div>
+  </div>
+
+  <!-- Sign Up Popup -->
+  <div class="modal" id="signupModal">
+    <div class="modal-content">
+      <span class="close" id="closeSignup">&times;</span>
+      <h2>Sign Up</h2>
+      <input type="text" placeholder="Full Name">
+      <input type="email" placeholder="Email">
+      <input type="password" placeholder="Password">
+      <button class="modal-btn">Register</button>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 Recipe Haven | All Rights Reserved</p>
+  </footer>
+
+  <script>
+    
+    // Sign In / Up popup
+    const signinBtn = document.getElementById('signinBtn');
+    const signupBtn = document.getElementById('signupBtn');
+    const signinModal = document.getElementById('signinModal');
+    const signupModal = document.getElementById('signupModal');
+    const closeSignin = document.getElementById('closeSignin');
+    const closeSignup = document.getElementById('closeSignup');
+
+    signinBtn.onclick = () => signinModal.style.display = 'flex';
+    signupBtn.onclick = () => signupModal.style.display = 'flex';
+    closeSignin.onclick = () => signinModal.style.display = 'none';
+    closeSignup.onclick = () => signupModal.style.display = 'none';
+    window.onclick = (e) => {
+      if (e.target == signinModal) signinModal.style.display = 'none';
+      if (e.target == signupModal) signupModal.style.display = 'none';
+    };
+
+    // Search bar filter
+    const searchInput = document.getElementById('searchInput');
+    const recipeCards = document.querySelectorAll('.recipe-card');
+
+    searchInput.addEventListener('input', () => {
+      const searchValue = searchInput.value.toLowerCase();
+      recipeCards.forEach(card => {
+        const title = card.querySelector('h3').textContent.toLowerCase();
+        card.style.display = title.includes(searchValue) ? 'block' : 'none';
+      });
+    });
+  </script>
+</body>
+</html>

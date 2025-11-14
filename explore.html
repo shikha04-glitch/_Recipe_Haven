@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explore Recipes</title>
+  <link rel="stylesheet" href="recipes.css">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">recipe haven</div>
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">My Recipes</a></li>
+      <li><a href="#">Profile</a></li>
+    </ul>
+  </nav>
+
+  <!-- Search and Add Recipe -->
+  <section class="search-section">
+    <input type="text" id="searchInput" placeholder="Search recipes...">
+    <button id="addRecipeBtn">+ Add Recipe</button>
+  </section>
+
+  <!-- Recipes Section -->
+  <section class="recipes-container" id="recipesContainer">
+    <!-- Recipe cards will be injected here by JS -->
+  </section>
+
+  <!-- Add Recipe Modal -->
+  <div class="modal" id="addRecipeModal">
+    <div class="modal-content">
+      <span class="close" id="addClose">&times;</span>
+      <h2>Add New Recipe</h2>
+      <input type="text" id="recipeName" placeholder="Recipe Name">
+      <input type="text" id="recipeImage" placeholder="Image URL">
+      <textarea id="recipeDesc" placeholder="Ingredients separated by commas ; Instructions after semicolon"></textarea>
+      <button id="saveRecipe">Save Recipe</button>
+    </div>
+  </div>
+
+  <div class="modal" id="recipeModal">
+  <div class="modal-content">
+    <span class="close" id="modalClose">&times;</span>
+    <h2 id="modalTitle"></h2>
+    <img id="modalImage" src="" alt="">
+    <h4>Ingredients:</h4>
+    <ul id="modalIngredients"></ul>
+    <h4>Instructions:</h4>
+    <p id="modalInstructions"></p>
+
+    <div class="recipe-actions" style="justify-content: space-around; margin-top:15px;">
+  <button class="like-btn">❤ Like</button>
+  <button class="save-btn">💾 Save</button>
+  <button>🔗 Share</button>
+  <button class="comment-btn">💬 Comment</button>
+</div>
+    </div>
+  </div>
+</div>
+  <script src="explore.js"></script>
+</body>
+</html>
