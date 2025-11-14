@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recipe Haven</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">recipe haven</div>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#testimonials">Testimonials</a>
+    </nav>
+    <div class="auth-buttons">
+      <button id="signinBtn">Sign In</button>
+      <button id="signupBtn">Sign Up</button>
+      
+
+
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <h1>Cook. Share. Inspire.</h1>
+      <p>Discover delightful recipes from around the world and share your own culinary magic.</p>
+      <a href="recipes.html" class="cta">Get Started</a>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about">
+    <div class="about-image">
+      <img src="https://plus.unsplash.com/premium_photo-1673108852141-e8c3c22a4a22?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170" alt="Cooking">
+    </div>
+    <div class="about-text">
+      <h2>About Recipe Haven</h2>
+      <p>Recipe Haven is your go-to platform to discover, create, and share recipes that inspire. 
+      From home chefs to professional cooks, everyone can share their love for food here. 
+      Explore global cuisines, try something new, and make every meal an experience.</p>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="services">
+    <h2>Flavorful Journeys Await</h2>
+    <div class="service-cards">
+      <div class="card">
+        <h3>Share Recipes</h3>
+        <p>Upload and showcase your signature dishes with a growing food-loving community.</p>
+      </div>
+      <div class="card">
+        <h3>Explore New Dishes</h3>
+        <p>Discover unique recipes and cuisines curated by chefs and home cooks worldwide.</p>
+      </div>
+      <div class="card">
+        <h3>Connect with Foodies</h3>
+        <p>Follow creators, save your favorite recipes, and connect through your love for food.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section id="testimonials" class="testimonials">
+    <h2>What Our Users Say</h2>
+    <div class="testimonial-cards">
+      <div class="testimonial">
+        <p>“Recipe Haven made me fall in love with cooking again. The community is so inspiring!”</p>
+        <h4>- Anjali Sharma</h4>
+      </div>
+      <div class="testimonial">
+        <p>“I found my new favorite recipes here. It’s my daily cooking companion.”</p>
+        <h4>- Rohan Mehta</h4>
+      </div>
+    </div>
+  </section>
+
+  <section class="explore-recipes" id="explore">
+    <div class="explore-container">
+        <h2>Explore Delicious Recipes</h2>
+        <p>Discover mouth-watering dishes crafted by passionate cooks and food lovers across the globe.</p>
+  
+    </div>
+</section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Recipe Haven | All Rights Reserved</p>
+  </footer>
+
+ <!-- Sign Up Popup -->
+<div class="modal" id="signupModal">
+  <div class="modal-content">
+    <span class="close" id="closeSignup">&times;</span>
+    <h2>Sign Up</h2>
+    <form onsubmit="handleSignup(event)">
+      <input type="text" id="signupName" placeholder="Full Name" required>
+      <input type="email" id="signupEmail" placeholder="Email" required>
+      <input type="password" id="signupPassword" placeholder="Password" required>
+      <button class="modal-btn" type="submit">Register</button>
+    </form>
+  </div>
+</div>
+
+  <!-- Sign In Popup -->
+<div class="modal" id="signinModal">
+  <div class="modal-content">
+    <span class="close" id="closeSignin">&times;</span>
+    <h2>Sign In</h2>
+    <form onsubmit="handleSignin(event)">
+      <input type="email" id="signinEmail" placeholder="Email" required>
+      <input type="password" id="signinPassword" placeholder="Password" required>
+      <button class="modal-btn" type="submit">Login</button>
+    </form>
+  </div>
+</div>
+
+  <script>
+    const signinBtn = document.getElementById('signinBtn');
+    const signupBtn = document.getElementById('signupBtn');
+    const signinModal = document.getElementById('signinModal');
+    const signupModal = document.getElementById('signupModal');
+    const closeSignin = document.getElementById('closeSignin');
+    const closeSignup = document.getElementById('closeSignup');
+
+    signinBtn.onclick = () => signinModal.style.display = 'block';
+    signupBtn.onclick = () => signupModal.style.display = 'block';
+    closeSignin.onclick = () => signinModal.style.display = 'none';
+    closeSignup.onclick = () => signupModal.style.display = 'none';
+    window.onclick = (e) => {
+      if (e.target == signinModal) signinModal.style.display = 'none';
+      if (e.target == signupModal) signupModal.style.display = 'none';
+    }
+    // -------- Modal Controls --------
+function openModal(id) {
+  document.getElementById(id).style.display = "block";
+}
+
+function closeModal(id) {
+  document.getElementById(id).style.display = "none";
+}
+
+// -------- Sign Up Function --------
+async function handleSignup(e) {
+  e.preventDefault();
+
+  const name = document.getElementById("signupName").value;
+  const email = document.getElementById("signupEmail").value;
+  const password = document.getElementById("signupPassword").value;
+
+  try {
+    const res = await fetch("http://localhost:5000/api/auth/signup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, email, password }),
+    });
+
+    const data = await res.json();
+    alert(data.message);
+    if (data.token) {
+      localStorage.setItem("token", data.token);
+      closeModal("signupModal");
+      window.location.href = "explore.html";
+    }
+  } catch (error) {
+    alert("❌ Signup failed!");
+  }
+}
+
+// -------- Sign In Function --------
+async function handleSignin(e) {
+  e.preventDefault();
+
+  const email = document.getElementById("signinEmail").value;
+  const password = document.getElementById("signinPassword").value;
+
+  try {
+    const res = await fetch("http://localhost:5000/api/auth/signin", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    });
+
+    const data = await res.json();
+    alert(data.message);
+    if (data.token) {
+      localStorage.setItem("token", data.token);
+      closeModal("signinModal");
+      window.location.href = "explore.html";
+    }
+  } catch (error) {
+    alert("❌ Login failed!");
+  }
+}
+
+  </script>
+
+</body>
+</html>
