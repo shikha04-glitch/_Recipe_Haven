@@ -167,5 +167,3 @@ This project is developed as part of the **Web Development with Open Source Fram
 
 ---
 
-Feel free to customize it with links, badges, or screenshots!
-If you want, I can also format a **GitHub-style README with badges, emojis, and sections**.
